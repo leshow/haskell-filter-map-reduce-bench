@@ -80,13 +80,28 @@ time                 10.02 ms   (9.961 ms .. 10.08 ms)
 mean                 9.952 ms   (9.909 ms .. 9.994 ms)
 std dev              110.4 μs   (91.10 μs .. 139.3 μs)
 
+benchmarking fun4/1000
+time                 32.54 ns   (32.45 ns .. 32.61 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 32.57 ns   (32.48 ns .. 32.70 ns)
+std dev              349.4 ps   (273.1 ps .. 467.8 ps)
+variance introduced by outliers: 10% (moderately inflated)
+
+benchmarking fun4/1000000
+time                 32.63 ns   (32.55 ns .. 32.71 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 32.72 ns   (32.60 ns .. 32.88 ns)
+std dev              480.4 ps   (364.2 ps .. 651.6 ps)
+variance introduced by outliers: 18% (moderately inflated)
 
 ```
-As you can see the Haskell implementation is significantly slower than the Rust
-implementation. a list of size 1 million takes around 35 ms with Haskell, whereas
-the Rust implementation takes only 500k ns (0.5 ms) on the same machine.
+My quickest Haskell implementation ran in ~35 ms, much slower than my Rust
+implementation. I decided to ask in the haskell irc channel on freenode if
+anyone had a faster implementation.
 
-EDIT: dwins in the Haskell IRC suggested I replace `filter even [0 .. x]` with
+dwins in the Haskell IRC suggested I replace `filter even [0 .. x]` with
 `[0, 2 .. x]`. This significantly speeds up the execution time on my machine to
-~10 ms. Thanks to Cale for the fun4 implementation, which runs in 32.63 ns,
-beating the Rust implementation.
+~10 ms.
+
+The cake goes to Cale for the fun4 implementation, which runs in 32.63 ns,
+beating the Rust implementation significantly.
