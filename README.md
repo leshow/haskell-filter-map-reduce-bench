@@ -8,6 +8,10 @@ wondering how fast it might be in Haskell.
 I'm no expert in Haskell, but I've written two implementations with only a
 slight variation that I think are idiomatic.
 
+EDIT: after talking with some people in the Haskell IRC, I've added an additional
+implementation that runs significantly faster with only a slight variation. See
+`fun3` in fold.hs.
+
 Criterion was used to benchmark. To build this project:
 
 ```
@@ -62,12 +66,27 @@ time                 38.55 ms   (38.08 ms .. 38.88 ms)
                      1.000 R²   (0.999 R² .. 1.000 R²)
 mean                 38.64 ms   (38.46 ms .. 38.92 ms)
 std dev              433.5 μs   (302.3 μs .. 636.3 μs)
+
+benchmarking fun3/1000
+time                 10.40 μs   (10.08 μs .. 10.83 μs)
+                     0.989 R²   (0.981 R² .. 0.997 R²)
+mean                 10.84 μs   (10.45 μs .. 11.63 μs)
+std dev              1.925 μs   (1.263 μs .. 2.909 μs)
+variance introduced by outliers: 95% (severely inflated)
+
+benchmarking fun3/1000000
+time                 10.02 ms   (9.961 ms .. 10.08 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 9.952 ms   (9.909 ms .. 9.994 ms)
+std dev              110.4 μs   (91.10 μs .. 139.3 μs)
+
+
 ```
 As you can see the Haskell implementation is significantly slower than the Rust
 implementation. a list of size 1 million takes around 35 ms with Haskell, whereas
 the Rust implementation takes only 500k ns (0.5 ms) on the same machine.
 
-Also to note, I wanted to see if Haskell automatically optimized fun1 by
-recognizing that doubling every element followed by summation was equivalent to
-just taking the sum and then doubling it. That looks to not be the case, because
-the explicit map call takes an extra 3 ms to finish.
+EDIT: dwins in the Haskell IRC suggested I replace `filter even [0 .. x]` with
+`[0, 2 .. x]`. This significantly speeds up the execution time on my machine to
+~10 ms. Thanks to Cale for the fun4 implementation, which runs in 32.63 ns,
+beating the Rust implementation.
