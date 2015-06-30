@@ -103,5 +103,7 @@ dwins in the Haskell IRC suggested I replace `filter even [0 .. x]` with
 `[0, 2 .. x]`. This significantly speeds up the execution time on my machine to
 ~10 ms.
 
-The cake goes to Cale for the fun4 implementation, which runs in 32.63 ns,
-beating the Rust implementation significantly.
+Thanks to Cale for the fun4 implementation, which runs in 32.63 ns. I'm not sure
+if this is a real execution time though or just the haskell compiler optimizing
+the function to be returning a single value, since the 1000 length list and
+1000000 length list return in the same amount of time. 
