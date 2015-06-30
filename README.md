@@ -43,56 +43,42 @@ you can also generate a pretty web page with graphs of the benchmark test
 on my machine:
 ```
 benchmarking fun1/1000
-time                 35.12 μs   (34.90 μs .. 35.30 μs)
+time                 34.84 μs   (34.65 μs .. 35.01 μs)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 35.25 μs   (35.14 μs .. 35.37 μs)
-std dev              382.6 ns   (332.6 ns .. 447.9 ns)
+mean                 34.91 μs   (34.83 μs .. 35.01 μs)
+std dev              289.6 ns   (223.0 ns .. 368.6 ns)
 
 benchmarking fun1/1000000
-time                 35.14 ms   (34.47 ms .. 35.66 ms)
-                     0.999 R²   (0.999 R² .. 1.000 R²)
-mean                 34.63 ms   (34.46 ms .. 34.86 ms)
-std dev              403.4 μs   (222.1 μs .. 577.7 μs)
+time                 34.82 ms   (34.52 ms .. 35.17 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 34.82 ms   (34.72 ms .. 34.95 ms)
+std dev              239.0 μs   (169.7 μs .. 331.2 μs)
 
 benchmarking fun2/1000
-time                 38.50 μs   (38.32 μs .. 38.67 μs)
-                     1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 38.83 μs   (38.65 μs .. 39.05 μs)
-std dev              696.1 ns   (550.3 ns .. 968.5 ns)
-variance introduced by outliers: 14% (moderately inflated)
+time                 37.69 μs   (37.38 μs .. 38.01 μs)
+                     0.987 R²   (0.978 R² .. 0.993 R²)
+mean                 45.95 μs   (43.00 μs .. 49.19 μs)
+std dev              12.01 μs   (9.914 μs .. 13.17 μs)
+variance introduced by outliers: 98% (severely inflated)
 
 benchmarking fun2/1000000
-time                 38.55 ms   (38.08 ms .. 38.88 ms)
-                     1.000 R²   (0.999 R² .. 1.000 R²)
-mean                 38.64 ms   (38.46 ms .. 38.92 ms)
-std dev              433.5 μs   (302.3 μs .. 636.3 μs)
+time                 38.27 ms   (38.05 ms .. 38.42 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 38.32 ms   (38.23 ms .. 38.41 ms)
+std dev              185.4 μs   (141.7 μs .. 235.6 μs)
 
 benchmarking fun3/1000
-time                 10.40 μs   (10.08 μs .. 10.83 μs)
-                     0.989 R²   (0.981 R² .. 0.997 R²)
-mean                 10.84 μs   (10.45 μs .. 11.63 μs)
-std dev              1.925 μs   (1.263 μs .. 2.909 μs)
-variance introduced by outliers: 95% (severely inflated)
+time                 10.05 μs   (10.00 μs .. 10.11 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 10.03 μs   (10.00 μs .. 10.07 μs)
+std dev              106.1 ns   (88.71 ns .. 129.9 ns)
 
 benchmarking fun3/1000000
-time                 10.02 ms   (9.961 ms .. 10.08 ms)
-                     1.000 R²   (0.999 R² .. 1.000 R²)
-mean                 9.952 ms   (9.909 ms .. 9.994 ms)
-std dev              110.4 μs   (91.10 μs .. 139.3 μs)
-
-benchmarking fun4/1000
-time                 32.54 ns   (32.45 ns .. 32.61 ns)
-                     1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 32.57 ns   (32.48 ns .. 32.70 ns)
-std dev              349.4 ps   (273.1 ps .. 467.8 ps)
-variance introduced by outliers: 10% (moderately inflated)
-
-benchmarking fun4/1000000
-time                 32.63 ns   (32.55 ns .. 32.71 ns)
-                     1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 32.72 ns   (32.60 ns .. 32.88 ns)
-std dev              480.4 ps   (364.2 ps .. 651.6 ps)
-variance introduced by outliers: 18% (moderately inflated)
+time                 12.65 ms   (9.922 ms .. 15.20 ms)
+                     0.886 R²   (0.839 R² .. 1.000 R²)
+mean                 10.48 ms   (10.05 ms .. 11.61 ms)
+std dev              1.613 ms   (417.0 μs .. 3.110 ms)
+variance introduced by outliers: 75% (severely inflated)
 
 ```
 My quickest Haskell implementation ran in ~35 ms, much slower than my Rust
@@ -102,8 +88,3 @@ anyone had a faster implementation.
 dwins in the Haskell IRC suggested I replace `filter even [0 .. x]` with
 `[0, 2 .. x]`. This significantly speeds up the execution time on my machine to
 ~10 ms.
-
-Thanks to Cale for the fun4 implementation, which runs in 32.63 ns. I'm not sure
-if this is a real execution time though or just the haskell compiler optimizing
-the function to be returning a single value, since the 1000 length list and
-1000000 length list return in the same amount of time. 
