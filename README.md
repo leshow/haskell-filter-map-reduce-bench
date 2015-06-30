@@ -8,7 +8,7 @@ wondering how fast it might be in Haskell.
 I'm no expert in Haskell, but I've written two implementations with only a
 slight variation that I think are idiomatic.
 
-Criterion was used to benchmark. To build this project, clone this repo then:
+Criterion was used to benchmark. To build this project:
 
 ```
 git clone https://github.com/leshow/haskell-filter-map-reduce-bench
